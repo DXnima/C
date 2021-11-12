@@ -2,7 +2,6 @@
 //
 
 #include "stdafx.h"
-#include <string.h>
 
 //ц╟ещеепР
 void sort_mp(int a[], int n) {
