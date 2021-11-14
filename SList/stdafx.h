@@ -2,21 +2,25 @@
 // 或是经常使用但不常更改的
 // 特定于项目的包含文件
 //
-#define _CRT_SECURE_NO_WARNINGS
+
 #pragma once
 
 #include "targetver.h"
 
 #include <stdio.h>
 #include <tchar.h>
-#include <stdlib.h>
-#include <string.h>
+
 
 
 // TODO:  在此处引用程序需要的其他头文件
-int main3();
-int main6();
-int main8();
-int main9();
-int main10();
-int score();
+#define TRUE 1
+#define FALSE 0
+#define OK 1
+#define ERROR 0
+#define INFEASIBLE -1
+#define OVERFLOW -2
+
+typedef int Status;
+
+//线性表主函数
+void main_SList();

@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{80E66B31-6FDA-4248-BFAF-E60DCA1F0897}</ProjectGuid>
+    <ProjectGuid>{DF736B8B-A084-45BA-B472-3DEDF0C9059E}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>C</RootNamespace>
+    <RootNamespace>SList</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -145,18 +145,13 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="score.h" />
+    <ClInclude Include="SList.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="10.cpp" />
-    <ClCompile Include="3.cpp" />
-    <ClCompile Include="6.cpp" />
-    <ClCompile Include="8.cpp" />
-    <ClCompile Include="9.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="score.cpp" />
+    <ClCompile Include="SList.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

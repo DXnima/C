@@ -6,6 +6,7 @@ int main()
 	//main6();
 	//main8();
 	//main9();
-	main10();
+	//main10();
+	score();
 	return 0;
 }
