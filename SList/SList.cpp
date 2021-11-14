@@ -26,6 +26,7 @@ Status DestroyList(SqList *L) {
 	// 顺序表长度跟容量都归零
 	(*L).length = 0;
 	(*L).listsize = 0;
+	return OK;
 }
 
 //判断是否为空表
@@ -169,16 +170,6 @@ void MergeList(SqList La, SqList Lb, SqList *Lc) {
 	while (pb <= pb_last) *pc++ = *pb++;
 }
 
-// 判断data>e是否成立
-Status CmpGreater(ElemType data, ElemType e) {
-	return data > e ? TRUE : FALSE;
-}
-
-// 测试函数，打印元素
-void PrintElem(ElemType e) {
-	printf("%d ", e);
-}
-
 void main_SList()
 {
 	SqList L,L1,Lc;
@@ -191,6 +182,7 @@ void main_SList()
 	printf("----------------初始L----------------\n");
 	printf("----------------个数：%d----------------\n", ListLength(L));
 	ListTraverse(L, PrintElem);
+	printf("----------------L.elem[0]：%d----------------\n", L.elem[0]);
 	printf("\n----------------99位置插入8848----------------\n");
 	//99位置插入8848
 	ListInsert(&L, 98, 8848);

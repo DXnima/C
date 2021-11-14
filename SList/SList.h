@@ -1,10 +1,5 @@
-#include <stdlib.h>
-
 #define LIST_INIT_SIZE 100 //线性存储空间初始分配量
 #define LISTINCREMENT 10 //分配增量
-
-/* 顺序表元素类型定义 */
-typedef int ElemType;
 
 typedef struct {
 	ElemType *elem; //存储空间基地址

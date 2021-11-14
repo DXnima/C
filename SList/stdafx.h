@@ -9,7 +9,7 @@
 
 #include <stdio.h>
 #include <tchar.h>
-
+#include <stdlib.h>
 
 
 // TODO:  在此处引用程序需要的其他头文件
@@ -22,5 +22,16 @@
 
 typedef int Status;
 
+/* 顺序表元素类型定义 */
+typedef int ElemType;
+
+// 判断data>e是否成立
+Status CmpGreater(ElemType data, ElemType e);
+
+// 测试函数，打印元素
+void PrintElem(ElemType e);
+
 //线性表主函数
 void main_SList();
+//链表主函数
+void main_SLink();
