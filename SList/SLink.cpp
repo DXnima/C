@@ -128,7 +128,7 @@ Status PriorElemLink(LinkList L, ElemType cur_e, ElemType* pre_e) {
 		return ERROR;
 	}
 	next = p->next;
-	while (p!=NULL && p->data != cur_e)
+	while (next !=NULL && next->data != cur_e)
 	{
 		p = next;
 		next = next->next;
@@ -279,7 +279,7 @@ void main_SLink() {
 	PriorElemLink(L,12,&e);
 	printf("%d\n",e);
 	printf("\n元素12处后继：");
-	PriorElemLink(L, 12, &e);
+	NextElemLink(L, 12, &e);
 	printf("%d\n", e);
 
 	printf("\n---------------头插法\n");
