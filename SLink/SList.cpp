@@ -5,7 +5,7 @@
 
 
 //构建空线性表
-Status InitList(SqList *L) {
+Status InitList(SList *L) {
 	L->elem = (ElemType *)malloc(LIST_INIT_SIZE * sizeof(ElemType));
 	if (!L->elem) exit(OVERFLOW);
 	L->length = 0;
@@ -14,7 +14,7 @@ Status InitList(SqList *L) {
 }
 
 //销毁空线性表
-Status DestroyList(SqList *L) {
+Status DestroyList(SList *L) {
 	// 确保顺序表结构存在
 	if (L == NULL || (*L).elem == NULL) {
 		return ERROR;
@@ -30,17 +30,17 @@ Status DestroyList(SqList *L) {
 }
 
 //判断是否为空表
-Status ListEmpty(SqList L) {
+Status ListEmpty(SList L) {
 	return L.length == 0 ? TRUE : FALSE;
 }
 
 //获取元素个数
-int ListLength(SqList L) {
+int ListLength(SList L) {
 	return L.length;
 }
 
 //返回第一个与e满足的元素位序
-int LocateElem(SqList L, ElemType e, Status(Compare)(ElemType, ElemType)) {
+int LocateElem(SList L, ElemType e, Status(Compare)(ElemType, ElemType)) {
 	int i;
 	ElemType* p;
 	// 确保顺序表结构存在
@@ -66,7 +66,7 @@ int LocateElem(SqList L, ElemType e, Status(Compare)(ElemType, ElemType)) {
 }
 
 //前驱 获取元素cur_e的前驱
-Status PriorElem(SqList L, ElemType cur_e, ElemType* pre_e) {
+Status PriorElem(SList L, ElemType cur_e, ElemType* pre_e) {
 	int i;
 	// 确保顺序表结构存在，且最少包含两个元素
 	if (L.elem == NULL || L.length < 2) {
@@ -88,7 +88,7 @@ Status PriorElem(SqList L, ElemType cur_e, ElemType* pre_e) {
 }
 
 //后继 获取元素cur_e的后继
-Status NextElem(SqList L, ElemType cur_e, ElemType* next_e) {
+Status NextElem(SList L, ElemType cur_e, ElemType* next_e) {
 	int i;
 	// 确保顺序表结构存在，且最少包含两个元素
 	if (L.elem == NULL || L.length < 2) {
@@ -110,7 +110,7 @@ Status NextElem(SqList L, ElemType cur_e, ElemType* next_e) {
 }
 
 //插入
-Status ListInsert(SqList *L, int i, ElemType e) {
+Status ListInsert(SList *L, int i, ElemType e) {
 	ElemType *newe, *p, *q;
 	if (i<1 || i>(*L).length + 1) return ERROR;
 	if ((*L).length >= (*L).listsize) {
@@ -129,7 +129,7 @@ Status ListInsert(SqList *L, int i, ElemType e) {
 }
 
 //删除
-Status ListDelete(SqList *L, int i, ElemType *e) {
+Status ListDelete(SList *L, int i, ElemType *e) {
 	ElemType *p, *q;
 	if (i<1 || i>(*L).length + 1) return ERROR;
 	p = &L->elem[i - 1];
@@ -143,7 +143,7 @@ Status ListDelete(SqList *L, int i, ElemType *e) {
 }
 
 //遍历 用visit函数访问顺序表
-void ListTraverse(SqList L, void (Visit)(ElemType)) {
+void ListTraverse(SList L, void (Visit)(ElemType)) {
 	int i;
 	for (i = 0; i < L.length; i++) {
 		Visit(L.elem[i]);
@@ -152,7 +152,7 @@ void ListTraverse(SqList L, void (Visit)(ElemType)) {
 }
 
 //合并
-void MergeList(SqList La, SqList Lb, SqList *Lc) {
+void MergeList(SList La, SList Lb, SList *Lc) {
 	ElemType *pa, *pa_last, *pb, *pb_last, *pc;
 	pa = La.elem;
 	pb = Lb.elem;
@@ -172,7 +172,7 @@ void MergeList(SqList La, SqList Lb, SqList *Lc) {
 
 void main_SList()
 {
-	SqList L, L1, Lc;
+	SList L, L1, Lc;
 	ElemType e;
 	//初始化表
 	InitList(&L);
