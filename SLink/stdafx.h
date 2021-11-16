@@ -33,5 +33,7 @@ void PrintElem(ElemType e);
 
 //线性表主函数
 void main_SList();
-//链表主函数
+//单链表主函数
 void main_SLink();
+//单循环链表主函数
+void main_SLink_R();
