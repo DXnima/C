@@ -16,7 +16,7 @@ int GetLengthLinkList_R(LinkList_R L);
 //获取指定位置id的e
 Status GetElemLinkList_R(LinkList_R L, int i, ElemType *e);
 //获取指定e的位置
-Status LocateElemLinkList_R(LinkList_R L, ElemType e, Status(*Compare)(ElemType, ElemType));
+int LocateElemLinkList_R(LinkList_R L, ElemType e, Status(*Compare)(ElemType, ElemType));
 //前驱
 Status PriorElemLinkList_R(LinkList_R L, ElemType e, ElemType *pre);
 //后继
