@@ -31,7 +31,7 @@ Status ClearLinkList_R(LinkList_R *L) {
 	LinkList_R p,q;
 	if (L == NULL || (*L)->next == NULL) return ERROR;
 	p = (*L)->next;
-	while (p)
+	while (p && (*L)->next == *L)
 	{
 		q = p;
 		p = p->next;

@@ -1,8 +1,8 @@
-typedef struct LNode {
+typedef struct LNode_D {
 	ElemType data;  //数据
-	LNode *prior;   //指向前一个结点的指针
-	LNode *next;    //指向后一个结点的指针
-}LNode, *LinkList_D;
+	LNode_D *prior;   //指向前一个结点的指针
+	LNode_D *next;    //指向后一个结点的指针
+}LNode_D, *LinkList_D;
 
 //初始化
 Status InitLinkList_D(LinkList_D *L);
