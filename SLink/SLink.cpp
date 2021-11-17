@@ -256,6 +256,7 @@ void main_SLink() {
 	LinkList L,Lb,Lc;
 	ElemType e;
 	int i;
+	printf("-----------单链表测试----------------\n");
 	printf("-----------头插法----------------\n");
 	InsertLinkList_H(&L, 10);
 	TraverseLinkList(L, PrintElem);

@@ -174,6 +174,7 @@ void main_SList()
 {
 	SList L, L1, Lc;
 	ElemType e;
+	printf("-----------线性表测试----------------\n");
 	//初始化表
 	InitList(&L);
 	//插入

@@ -21,6 +21,7 @@ Status DestroyLinkList_R(LinkList_R *L) {
 		free(p);
 		if ((*L)->next == *L) break;
 	}
+	free((*L)->next);
 	*L = NULL;
 	return OK;
 }
@@ -84,7 +85,7 @@ int LocateElemLinkList_R(LinkList_R L, ElemType e, Status(*Compare)(ElemType, El
 	int i = 1;
 	if (L == NULL || L->next == L) return ERROR;
 	p = L->next;
-	while (p && !Compare(e, p->data))
+	while (p && !Compare(e, p->data) && p->next != L)
 	{
 		p = p->next;
 		i++;
@@ -227,36 +228,100 @@ Status InsertLinkList_R_N(LinkList_R *L, int n) {
 }
 
 //合并
-Status MergeLinkList_R(LinkList_R La, LinkList_R Lb, LinkList_R *Lc);
+Status MergeLinkList_R(LinkList_R La, LinkList_R Lb, LinkList_R *Lc) {
+	LinkList_R pc, pa, pb;
+	if (La == NULL || Lb == NULL) return ERROR;
+	*Lc = (LinkList_R)malloc(sizeof(LNode));
+	if (!Lc) exit(OVERFLOW);
+	(*Lc)->next = NULL;
+	pc = (*Lc);
+	pa = La->next;
+	pb = Lb->next;
+	while (pa && pb)
+	{
+		if (pa->data < pb->data) {
+			pc->next = pa;
+			pc = pa;
+			pa = pa->next;
+			if (pa == La) break;
+		}
+		else
+		{
+			pc->next = pb;
+			pc = pb;
+			pb = pb->next;
+			if (pb == Lb) break;
+		}
+	}
+	//剩余连接
+	while (pa != La)
+	{
+		pc->next = pa;
+		pc = pa;
+		pa = pa->next;
+	}
+	while (pb != Lb)
+	{
+		pc->next = pb;
+		pc = pb;
+		pb = pb->next;
+	}
+	//尾结点连接头结点
+	pc->next = *Lc;
+	return OK;
+}
 
 void main_SLink_R() {
-	LinkList_R L;
+	LinkList_R L, Lb, Lc;
 	ElemType e;
-	int i = 0;
+	int i;
+	printf("-----------循环单链表测试----------------\n");
+	printf("-----------头插法----------------\n");
+	InsertLinkList_R_H(&L, 10);
+	TraverseLinkList_R(L, PrintElem);
+	if (DestroyLinkList_R(&L)) printf("\n-----------链表销毁成功！----------------\n");
+
+	printf("\n-----------尾插法----------------\n");
+	InsertLinkList_R_N(&L, 10);
+	TraverseLinkList_R(L, PrintElem);
+	if (DestroyLinkList_R(&L)) printf("\n-----------链表销毁成功！----------------\n");
 	InitLinkList_R(&L);
-	for (i = 1; i < 5; i++)
+
+	if (InitLinkList_R(&L)) printf("\n-----------链表初始化成功！----------------\n");
+	for (i = 1; i <= 10; i++)
 	{
 		InsertLinkList_R(L, i, i);
 	}
-	printf("\n");
 	TraverseLinkList_R(L, PrintElem);
-	printf("%d\n", GetLengthLinkList_R(L));
-	InsertLinkList_R(L, 4, 8848);
+	printf("\n链表创建成功，长度为：%d\n", GetLengthLinkList_R(L));
+
+	PriorElemLinkList_R(L, 8, &e);
+	printf("\n元素8的前序是：%d\n", e);
+
+	NextElemLinkList_R(L, 8, &e);
+	printf("\n元素8的后继是：%d\n", e);
+
+	printf("\n在第8位置插入8848\n", e);
+	InsertLinkList_R(L, 8, 8848);
 	TraverseLinkList_R(L, PrintElem);
-	DeleteLinkList_R(L, 4, &e);
+
+	printf("\n删除第8个元素\n", e);
+	DeleteLinkList_R(L, 8, &e);
 	TraverseLinkList_R(L, PrintElem);
-	GetElemLinkList_R(L,4,&e);
-	printf("删除元素为：%d\n", e);
-	printf("大于2第一个元素位置：%d\n", LocateElemLinkList_R(L, 2, CmpGreater));
-	PriorElemLinkList_R(L,2,&e);
-	printf("2的前驱：%d\n", e);
-	NextElemLinkList_R(L, 4, &e);
-	printf("4的后继：%d\n", e);
-	InsertLinkList_R_H(&L, 10);
-	TraverseLinkList_R(L, PrintElem);
-	InsertLinkList_R_N(&L, 10);
-	TraverseLinkList_R(L, PrintElem);
-	if (DestroyLinkList_R(&L)) printf("销毁成功！\n");
-	else printf("销毁失败！\n");
-	
+	printf("\n删除成功，删除元素为：e = %d\n", e);
+
+	printf("\n第一个大于 \"8\" 的位置是:i = %d\n", LocateElemLinkList_R(L, 8, CmpGreater));
+
+	printf("\n-----------初始化Lb----------------\n");
+	InitLinkList_R(&Lb);
+	for (i = 1; i <= 5; i++)
+	{
+		InsertLinkList_R(Lb, i, i * 3);
+	}
+	TraverseLinkList_R(Lb, PrintElem);
+	printf("\n-----------L和Lb合并为Lc----------------\n");
+	MergeLinkList_R(L, Lb, &Lc);
+	TraverseLinkList_R(Lc, PrintElem);
+	if (DestroyLinkList_R(&Lc)) printf("\n-----------链表销毁成功！----------------\n");
+	printf("\n-----------链表销毁失败！----------------\n");
 }
