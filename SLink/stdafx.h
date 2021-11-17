@@ -37,3 +37,5 @@ void main_SList();
 void main_SLink();
 //单循环链表主函数
 void main_SLink_R();
+//双向链表
+void main_SLink_D();

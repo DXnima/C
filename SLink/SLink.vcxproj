@@ -150,6 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SLink.h" />
+    <ClInclude Include="SLink_D.h" />
     <ClInclude Include="SLink_R.h" />
     <ClInclude Include="SList.h" />
     <ClInclude Include="stdafx.h" />
@@ -158,6 +159,7 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SLink.cpp" />
+    <ClCompile Include="SLink_D.cpp" />
     <ClCompile Include="SLink_R.cpp" />
     <ClCompile Include="SList.cpp" />
     <ClCompile Include="stdafx.cpp">

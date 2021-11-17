@@ -32,4 +32,4 @@ Status InsertLinkList_H(LinkList *L, int n);
 //Î²²å·¨
 Status InsertLinkList_N(LinkList *L, int n);
 //ºÏ²¢
-Status MergeLinkList(LinkList La, LinkList Lb, LinkList *Lc);
+Status MergeLinkList(LinkList La, LinkList Lb, LinkList *Lc, Status(*Compare)(ElemType, ElemType));
