@@ -265,8 +265,8 @@ void main_SLink() {
 	printf("\n-----------尾插法----------------\n");
 	InsertLinkList_N(&L, 10);
 	TraverseLinkList(L, PrintElem);
-	if (InitLinkList(&L)) printf("\n-----------链表销毁成功！----------------\n");
-	DestroyLinkList(&L);
+	if (DestroyLinkList(&L)) printf("\n-----------链表销毁成功！----------------\n");
+	InitLinkList(&L);
 	
 	if (InitLinkList(&L)) printf("\n-----------链表初始化成功！----------------\n");
 	for (i = 1; i <= 10; i++)
