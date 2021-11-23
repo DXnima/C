@@ -283,12 +283,6 @@ void main_SLink_D() {
 	}
 	TraverseLinkList_D(Lb, PrintElem);
 
-	if (MergeLinkList_D(L, Lb, &Lc)) {
-		printf("L和Lb合并成功！\n");
-		TraverseLinkList_D(L, PrintElem);
-	}
-	else printf("L和Lb合并失败！\n");
-
 	printf("长度：%d\n",GetLengthLinkList_D(L));
 
 	if (PriorElemLinkList_D(L, 1, &e)) printf("指定前驱为：e=%d\n", e);
@@ -326,4 +320,9 @@ void main_SLink_D() {
 	}
 	else printf("尾插法创建失败！\n");
 
+	if (MergeLinkList_D(L, Lb, &Lc)) {
+		printf("L和Lb合并成功！\n");
+		TraverseLinkList_D(Lc, PrintElem);
+	}
+	else printf("L和Lb合并失败！\n");
 }
