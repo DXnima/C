@@ -86,31 +86,38 @@ Status PolynLength(LinkList_Polyn P) {
 
 int comp(int a, int b) {
 	if (a > b) return 1;
-	else if (a = b) return 0;
+	else if (a == b) return 0;
 	else return -1;
 }
 
-//多项式相加 Pa = Pa + Pb，并销毁一元多项式Pb
-Status AddPolyn(LinkList_Polyn *Pa, LinkList_Polyn *Pb) {
+//多项式相加减 Pa = Pa ± Pb，并销毁一元多项式Pb
+Status AddorSubtractPolyn(LinkList_Polyn Pa, LinkList_Polyn Pb, char str) {
 	LinkList_Polyn pa, pb, pc, q;
 	float sum = 0.0;
-	if (EmptyPolyn(*Pa) || EmptyPolyn(*Pb)) return ERROR;
-	pa = (*Pa)->next;
-	pb = (*Pb)->next;
-	pc = pa;
+	if (EmptyPolyn(Pa) || EmptyPolyn(Pb)) return ERROR;
+	pa = (Pa)->next;
+	pb = (Pb)->next;
+	pc = Pa;
 	while (pa && pb)
 	{
 		switch (comp(pa->data.expn, pb->data.expn))
 		{
 		//指数大
 		case 1:
-			pc = pb->next;
+			pc->next = pb;
 			pc = pb;
 			pb = pb->next;
 			break;
 		//指数相等
 		case 0:
-			sum = pa->data.coef + pb->data.coef;
+			// +号为多项式相加
+			if(str == '+') sum = pa->data.coef + pb->data.coef;
+			// -号为多项式相加
+			else if(str == '-') sum = pa->data.coef - pb->data.coef;
+			else { 
+				printf("运算符号有误，只能 '+' 或者 '-' "); 
+				return ERROR;
+			}
 			if (sum == 0.0) {
 				q = pa;
 				pa = pa->next;
@@ -123,23 +130,24 @@ Status AddPolyn(LinkList_Polyn *Pa, LinkList_Polyn *Pb) {
 				pc = pa;
 				pa = pa->next;
 			}
+			/* 释放qb所指向的结点的空间 */
+			q = pb;
+			pb = pb->next;
+			free(q);
 			break;
 		//指数小
 		case -1:
-			pc = pa->next;
+			pc->next = pa;
 			pc = pa;
 			pa = pa->next;
 			break;
 		}
 	}
 	pc->next = pa ? pa : pb;
-	free(pb);
-	*Pb = NULL;
+	free(Pb);
 	return OK;
 }
 
-//多项式相减 Pa = Pa - Pb,并销毁一元多项式Pb
-Status SubtractPolyn(LinkList_Polyn *Pa, LinkList_Polyn *Pb);
 //多项式相乘 Pa = Pa * Pb,并销毁一元多项式Pb
 Status MultiplyPolyn(LinkList_Polyn *Pa, LinkList_Polyn *Pb);
 
@@ -147,8 +155,8 @@ void main_SLink_Polyn() {
 	LinkList_Polyn P,Pb;
 	CreatPolyn(&P, 3);
 	CreatPolyn(&Pb, 3);
-	printf("%d", PolynLength(P));
+	printf("%d\n", PolynLength(P));
 	PrintPolyn(P); PrintPolyn(Pb);
-	AddPolyn(&P, &Pb);
+	AddorSubtractPolyn(P, Pb, '+');
 	PrintPolyn(P);
 }

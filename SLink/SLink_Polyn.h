@@ -20,9 +20,7 @@ Status EmptyPolyn(LinkList_Polyn P);
 Status PrintPolyn(LinkList_Polyn P);
 //返回一元多项式p中的项数
 Status PolynLength(LinkList_Polyn P);
-//多项式相加 Pa = Pa + Pb，并销毁一元多项式Pb
-Status AddPolyn(LinkList_Polyn *Pa, LinkList_Polyn *Pb);
-//多项式相减 Pa = Pa - Pb,并销毁一元多项式Pb
-Status SubtractPolyn(LinkList_Polyn *Pa, LinkList_Polyn *pb);
+//多项式相减 Pa = Pa ± Pb，并销毁一元多项式Pb
+Status AddorSubtractPolyn(LinkList_Polyn Pa, LinkList_Polyn Pb, char str);
 //多项式相乘 Pa = Pa * Pb,并销毁一元多项式Pb
 Status MultiplyPolyn(LinkList_Polyn *Pa, LinkList_Polyn *Pb);
