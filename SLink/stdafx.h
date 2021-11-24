@@ -22,7 +22,7 @@
 
 typedef int Status;
 
-/* 顺序表元素类型定义 */
+/* 元素类型定义 */
 typedef int ElemType;
 
 // 判断data>e是否成立
@@ -39,3 +39,5 @@ void main_SLink();
 void main_SLink_R();
 //双向链表
 void main_SLink_D();
+//一元多项式的表示和相加
+void main_SLink_Polyn();
