@@ -115,6 +115,45 @@ void Conversion() {
 	DestroyStack(S);
 }
 
+//括号匹配检验
+void Bracket() {
+	SqStack S;
+	SElemType e;
+	int a = '\n';
+	InitStack(S);
+	printf("输入字符(#结束):\n");
+	while (a != '#')
+	{
+		a = getchar();
+		switch (a)
+		{
+		case 93://]
+			GetTop(S, e);
+			if (e == 91) Pop(S,e);
+			else Push(S, a);
+			break;
+		case 62://>
+			GetTop(S, e);
+			if (e == 60) Pop(S, e);
+			else Push(S, a);
+			break;
+		case 41://)
+			GetTop(S, e);
+			if (e == 40) Pop(S, e);
+			else Push(S, a);
+			break;
+		case 125://}
+			GetTop(S, e);
+			if (e == 123) Pop(S, e);
+			else Push(S, a);
+			break;
+		}
+	}
+	StackTraverse(S, PrintElem);
+	if (StackEmpty(S)) printf("括号验证正确！");
+	else printf("括号验证错误！");
+}
+
 void main_Stack() {
 	SqStack S;
 	SElemType e;
@@ -136,6 +175,7 @@ void main_Stack() {
 	if(DestroyStack(S)) printf("----------销毁成功----------\n");
 	else printf("----------销毁失败----------\n");
 	printf("----------测试十进制转其他进制----------\n");
-	Conversion();
+	Bracket();
+	//Conversion();
 }
 

@@ -24,3 +24,5 @@ Status Pop(SqStack &S, SElemType &e);
 Status StackTraverse(SqStack S, void(*visit)(SElemType));
 //十进制转换其他进制
 void Conversion();
+//括号匹配检验
+void Bracket();
