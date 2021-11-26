@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "C", "C\C.vcxproj", "{80E66B
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SLink", "SLink\SLink.vcxproj", "{45C009AA-B153-4FB4-A1F0-C3DBEE7729EF}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Stack", "Stack\Stack.vcxproj", "{EBC46BDA-2EC3-4560-9A05-F2CAB8CC46BE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,14 @@ Global
 		{45C009AA-B153-4FB4-A1F0-C3DBEE7729EF}.Release|x64.Build.0 = Release|x64
 		{45C009AA-B153-4FB4-A1F0-C3DBEE7729EF}.Release|x86.ActiveCfg = Release|Win32
 		{45C009AA-B153-4FB4-A1F0-C3DBEE7729EF}.Release|x86.Build.0 = Release|Win32
+		{EBC46BDA-2EC3-4560-9A05-F2CAB8CC46BE}.Debug|x64.ActiveCfg = Debug|x64
+		{EBC46BDA-2EC3-4560-9A05-F2CAB8CC46BE}.Debug|x64.Build.0 = Debug|x64
+		{EBC46BDA-2EC3-4560-9A05-F2CAB8CC46BE}.Debug|x86.ActiveCfg = Debug|Win32
+		{EBC46BDA-2EC3-4560-9A05-F2CAB8CC46BE}.Debug|x86.Build.0 = Debug|Win32
+		{EBC46BDA-2EC3-4560-9A05-F2CAB8CC46BE}.Release|x64.ActiveCfg = Release|x64
+		{EBC46BDA-2EC3-4560-9A05-F2CAB8CC46BE}.Release|x64.Build.0 = Release|x64
+		{EBC46BDA-2EC3-4560-9A05-F2CAB8CC46BE}.Release|x86.ActiveCfg = Release|Win32
+		{EBC46BDA-2EC3-4560-9A05-F2CAB8CC46BE}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
