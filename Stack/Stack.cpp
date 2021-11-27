@@ -115,6 +115,10 @@ void Conversion() {
 	DestroyStack(S);
 }
 
+void PrintElemByChar(SElemType e) {
+	printf("%c ", e);
+}
+
 //括号匹配检验
 void Bracket() {
 	SqStack S;
@@ -125,6 +129,7 @@ void Bracket() {
 	while (a != '#')
 	{
 		a = getchar();
+		if (a == '#' || a == '\n') continue;
 		switch (a)
 		{
 		case 93://]
@@ -147,11 +152,17 @@ void Bracket() {
 			if (e == 123) Pop(S, e);
 			else Push(S, a);
 			break;
+		default:
+			Push(S, a);
+			break;
 		}
 	}
-	StackTraverse(S, PrintElem);
 	if (StackEmpty(S)) printf("括号验证正确！");
-	else printf("括号验证错误！");
+	else 
+	{ 
+		printf("括号验证错误,错误位置:\n");
+		StackTraverse(S, PrintElemByChar);
+	}
 }
 
 void main_Stack() {
