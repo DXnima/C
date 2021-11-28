@@ -26,3 +26,5 @@ Status StackTraverse(SqStack S, void(*visit)(SElemType));
 void Conversion();
 //¿®∫≈∆•≈‰ºÏ—È
 void Bracket();
+//––±‡º≠≥Ã–Ú
+void LineEdit();

@@ -51,7 +51,7 @@ int StackLength(SqStack S) {
 //获取栈顶元素
 Status GetTop(SqStack S, SElemType &e) {
 	if (S.base == NULL || S.top == S.base) {
-		return 0;
+		return ERROR;
 	}
 	// 不会改变栈中元素
 	e = *(S.top - 1);
@@ -116,7 +116,7 @@ void Conversion() {
 }
 
 void PrintElemByChar(SElemType e) {
-	printf("%c ", e);
+	printf("%c", e);
 }
 
 //括号匹配检验
@@ -165,6 +165,31 @@ void Bracket() {
 	}
 }
 
+//行编辑程序
+void LineEdit() {
+	SqStack S;
+	SElemType e;
+	int ch = getchar();
+	InitStack(S);
+	while (ch != '\0')
+	{
+		while (ch != '\0' && ch != '\n')
+		{
+			switch (ch) {
+			case '@':ClearStack(S); break;
+			case '#':Pop(S, ch); break;
+			default:Push(S, ch); break;
+			}
+			ch = getchar();
+		}
+		// 清空之前输出当前栈的内容
+		StackTraverse(S, PrintElemByChar);
+		ClearStack(S);
+		if (ch != '\0') ch = getchar();
+	}
+	DestroyStack(S);
+}
+
 void main_Stack() {
 	SqStack S;
 	SElemType e;
@@ -186,7 +211,8 @@ void main_Stack() {
 	if(DestroyStack(S)) printf("----------销毁成功----------\n");
 	else printf("----------销毁失败----------\n");
 	printf("----------测试十进制转其他进制----------\n");
-	Bracket();
 	//Conversion();
+	//Bracket();
+	LineEdit();
 }
 

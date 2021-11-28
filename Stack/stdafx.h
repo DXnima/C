@@ -25,6 +25,15 @@
 
 typedef int Status;
 
+/*宏函数*/
+//函数暂停一段时间
+#define Wait(x)\
+ {\
+	double _Loop_Num_;\
+	for(_Loop_Num_=0.01; _Loop_Num_<=100000.0*x; _Loop_Num_+=0.01)\
+		;\
+ }//设立一个空循环 
+
 /* 元素类型定义 */
 typedef int SElemType;
 
@@ -33,3 +42,5 @@ void PrintElem(SElemType e);
 
 //栈主函数
 void main_Stack();
+//迷宫问题
+void main_Maze();
