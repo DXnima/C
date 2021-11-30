@@ -6,6 +6,7 @@ Status InitStack(SqStack_M &S) {
 	S.base = (SElemType_M*)malloc(STACK_INIT_SIZE * sizeof(SElemType_M));
 	if (!S.base) exit(OVERFLOW);
 	S.top = S.base;
+	S.stacksize = STACK_INIT_SIZE;
 	return OK;
 }
 
@@ -29,7 +30,7 @@ Status ClearStack(SqStack_M &S) {
 //判断栈是否为空
 Status StackEmpty(SqStack_M S) {
 	if (S.base == S.top) return TRUE;
-	else FALSE;
+	else return FALSE;
 }
 
 //返回栈的长度
@@ -40,17 +41,19 @@ int StackLength(SqStack_M S) {
 
 //获取栈顶元素
 Status GetTop(SqStack_M S, SElemType_M &e) {
-	if (S.base == NULL || S.top == S.base) return ERROR;
+	if (S.base == NULL || S.top == S.base) {
+		return ERROR;
+	}
+	// 不会改变栈中元素
 	e = *(S.top - 1);
 	return OK;
 }
 
 //入栈
 Status Push(SqStack_M &S, SElemType_M e) {
-	if (S.base == NULL || S.top == S.base) return ERROR;
-	//判断栈满 扩容
 	if (S.top - S.base >= S.stacksize) {
-		S.base = (SElemType_M*)realloc(S.base, (S.stacksize + STACKINCREMENT) * sizeof(SElemType_M));
+		//栈满追加存储空间
+		S.base = (SElemType_M *)realloc(S.base, (S.stacksize + STACKINCREMENT) * sizeof(SElemType_M));
 		if (!S.base) exit(OVERFLOW);
 		S.top = S.base + S.stacksize;
 		S.stacksize += STACKINCREMENT;
@@ -61,7 +64,7 @@ Status Push(SqStack_M &S, SElemType_M e) {
 
 //出栈
 Status Pop(SqStack_M &S, SElemType_M &e) {
-	if (StackEmpty(S)) return ERROR;
+	if (S.base == S.top) return ERROR;
 	e = *--S.top;
 	return OK;
 }
@@ -150,21 +153,16 @@ Status MazePath(MazeType maze, PosType start, PosType end) {
 */
 void InitMaze(MazeType maze, PosType* start, PosType* end) {
 	int i, j, tmp;
-
 	srand((unsigned)time(NULL));                // 用系统时间做随机数种子
-
 	for (i = 0; i < M; i++) {
 		for (j = 0; j < N; j++) {
-
 			// 在迷宫最外层生成外墙
 			if (i == 0 || j == 0 || i == M - 1 || j == N - 1) {
 				maze[i][j] = Wall;
-
 				// 迷宫内部的物件
 			}
 			else {
 				tmp = rand() % X;   // 生成随机数[0, X-1]填充迷宫
-
 				if (tmp == 0) {
 					// 1/X的概率生成障碍
 					maze[i][j] = Obstacle;
